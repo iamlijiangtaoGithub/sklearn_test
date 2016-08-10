@@ -8,11 +8,14 @@ def readBigData(filePath,delim,header=None):
     chunkSize = 100000
     chunks = []
     while loop:
+        print "read chunk "
         try:
             chunk = reader.get_chunk(chunkSize)
             chunks.append(chunk)
         except StopIteration:
             loop = False
-        print "Iteration is stopped."
+            print "Iteration is stopped."
     df = pd.concat(chunks, ignore_index=True)
+    print "read ok!"
     return df
+
